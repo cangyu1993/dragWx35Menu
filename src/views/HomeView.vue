@@ -24,7 +24,10 @@
           <li class="sub_name" v-for="(item, index) in areaBtn" :key="index" :class="{ 'current': isCurrentArea(index) }"
             @click.stop="selectMenuArea(index)">{{
               item.name }}</li>
-          <li slot="footer" key="footer" class="area_add" @click="addAreaBtn">新增+</li>
+          <div class="area_footer" slot="footer" key="footer">
+            <li class="area_add" @click="addAreaBtn">新增+</li>
+            <li class="area_add area_save hvr-sweep-to-right" @click="asveAreaBtn">保存</li>
+          </div>
         </draggable>
       </ul>
     </div>
@@ -71,6 +74,8 @@ export default {
     }
   },
   methods: {
+    //保存待启用区域
+    asveAreaBtn() { },
     //待启用区域current样式
     isCurrentArea(index) {
       return this.areaIndex === index
@@ -185,155 +190,6 @@ export default {
 </script>
 
 <style scoped lang="less">
-.current {
-  border-color: #44b549 !important;
-  background: #fff;
-  color: #44b549;
-}
-
-.root {
-  display: flex;
-
-  .weixin-menu-detail {
-    margin-left: 660px;
-  }
-}
-
-.home {
-  width: 375px;
-  height: 667px;
-  box-sizing: border-box;
-  border: 1px solid #eee;
-  position: relative;
-
-  .menu_list {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    align-items: flex-end;
-    flex-shrink: 0;
-
-    .sub_buttons {
-      width: calc(375px / 3);
-      box-sizing: border-box;
-
-      .menu_name {
-        height: 60px;
-        text-align: center;
-        padding: 20px;
-        border: 1px solid #eee;
-        margin-top: 10px;
-        position: relative;
-
-        &::after {
-          display: block;
-          content: ' ';
-          position: absolute;
-          left: 50%;
-          top: -20px;
-          transform: translate(-50%, 100%);
-          width: 0;
-          height: 0;
-          border-style: solid;
-          border-width: 8.7px 5px 0 5px;
-          border-color: #eee transparent transparent transparent;
-        }
-      }
-    }
-  }
-
-  .menu_1_3 {
-    width: calc(375px / 3 * 0);
-  }
-
-  .menu_1_2 {
-    width: calc(375px / 3 * 1);
-  }
-
-  .menu_1_1 {
-    width: calc(375px / 3 * 2);
-  }
-
-  .menu_1_0 {
-    width: calc(375px / 3 * 3);
-  }
-
-  .add_menu_1 {
-    height: 60px;
-    box-sizing: border-box;
-    padding: 20px;
-    border: 1px solid #eee;
-    text-align: center;
-  }
-
-  .add_menu_2,
-  .sub_name {
-    height: 60px;
-    text-align: center;
-    padding: 20px;
-    border: 1px solid #eee;
-    cursor: pointer;
-  }
-}
-
-.area_other {
-  width: 600px;
-  min-height: 667px;
-  box-sizing: border-box;
-  border: 1px solid #eee;
-  margin-left: calc(375px + 30px);
-  overflow-y: scroll;
-
-  .area_other_data {
-    padding: 25px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .sub_name {
-    margin: 5px;
-    cursor: pointer;
-  }
-
-  .sub_name,
-  .area_add {
-    width: calc(375px / 3);
-    height: 60px;
-    text-align: center;
-    padding: 20px;
-    border: 1px solid #eee;
-    margin: -1px;
-    cursor: pointer;
-  }
-}
-
-.flip-list-move {
-  transition: transform 0.5s;
-}
-
-.no-move {
-  transition: transform 0s;
-}
-
-.ghost {
-  opacity: 0.5;
-  background: #c8ebfb;
-}
-
-.area_other::-webkit-scrollbar {
-  display: none;
-}
-
-/* 隐藏 IE、Edge 和 Firefox 的滚动条 */
-.area_other {
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
-}
-
+@import url(../style/35menu.less);
 @import url(../style/wx-menu.css);
 </style>
